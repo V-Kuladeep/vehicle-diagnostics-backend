@@ -1,0 +1,18 @@
+{
+  "logs": [
+    {
+      "timestamp": "2025-01-01 00:00:00",
+      "vehicleId": "1018",
+      "level": "ERROR",
+      "code": "B1000",
+      "message": "Airbag system fault"
+    },
+    {
+      "timestamp": "2025-01-01 00:02:00",
+      "vehicleId": "1012",
+      "level": "INFO",
+      "code": "P0171",
+      "message": "System too lean (Bank 1)"
+    }
+  ]
+}
