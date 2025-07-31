@@ -36,6 +36,10 @@ This is a Node.js + TypeScript backend application that parses and stores vehicl
 
 npm i
 
+# to save types also to declaration error after installation
+
+npm i --save-dev @types/lirbrayname
+
 # Start the serve
 
 npm start
