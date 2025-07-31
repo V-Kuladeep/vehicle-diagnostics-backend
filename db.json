@@ -13,6 +13,13 @@
       "level": "INFO",
       "code": "P0171",
       "message": "System too lean (Bank 1)"
+    },
+    {
+      "timestamp": "2025-07-24 14:21:08",
+      "vehicleId": "1234",
+      "level": "ERROR",
+      "code": "U0420",
+      "message": "Steering angle sensor malfunction"
     }
   ]
 }

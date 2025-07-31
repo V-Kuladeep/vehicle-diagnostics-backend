@@ -1,0 +1,110 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API",
+    "description": "Run API in NodeJs using TypeScript",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Development"
+    }
+  ],
+  "tags": [
+    {
+      "name": "upload",
+      "description": "Upload and fetch logs"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/logs/upload": {
+      "post": {
+        "tags": ["upload"],
+        "summary": "Upload log file",
+        "description": "Accepts the logs in string format to store in db",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "logFile": {
+                    "type": "string",
+                    "example": "[2025-07-24 14:21:08] [VEHICLE_ID:1234] [ERROR] [CODE:U0420] [Steering angle sensor malfunction]"
+                  }
+                },
+                "required": ["logFile"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Logs uploaded successfully"
+          },
+          "400": {
+            "description": "Invalid log file input"
+          }
+        }
+      }
+    },
+    "/logs": {
+      "get": {
+        "tags": ["upload"],
+        "summary": "Fetch logs with optional filters",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "vehicle",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by vehicle ID"
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by error code"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Start date/time (ISO format)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "End date/time (ISO format)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logs fetched successfully"
+          },
+          "404": {
+            "description": "No logs found for given filters"
+          }
+        }
+      }
+    }
+  }
+}

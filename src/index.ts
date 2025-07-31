@@ -1,5 +1,7 @@
 import express from "express";
 import logRouter from "./routes/logRouter";
+import swaggerUI from "swagger-ui-express";
+import swaggerDocument from "./../src/swagger.json";
 
 const app = express();
 const PORT = 3000;
@@ -10,6 +12,14 @@ import { initDB } from "./db/db";
 
 initDB();
 
+let options = {};
+app.use(
+  "/swagger",
+  swaggerUI.serveFiles(swaggerDocument, options),
+  swaggerUI.setup(swaggerDocument)
+);
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Swagger UI available at http://localhost:${PORT}/swagger`);
 });
